@@ -1,0 +1,25 @@
+pipeline {
+    agent {
+        node{
+//          label 'maven-builder'
+            label 'builder-06'
+            customWorkspace "workspace/${env.JOB_NAME}"
+            }
+    }
+    tools {
+        maven 'linux-maven-3.3.9'
+        jdk 'linux-jdk1.8.0_102'
+    }
+    options { 
+        buildDiscarder(logRotator(numToKeepStr: '5'))
+        timestamps()
+    }
+    stages {
+        stage('License check') {
+            steps {
+                sh "array=($(curl https://api.github.com/orgs/dellemc-symphony/repos?per_page=100 | jq '.[] | .name'))"
+                checkLicense()
+            }
+        }
+    }
+}
