@@ -17,7 +17,6 @@ pipeline {
     stages {
         stage('License check') {
             steps {
-                sh "array=(\$(curl https://api.github.com/orgs/dellemc-symphony/repos?per_page=100 | jq '.[] | .name'))"
                 checkLicense()
             }
         }
