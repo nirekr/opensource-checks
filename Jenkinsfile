@@ -1,8 +1,8 @@
 pipeline {
     agent {
         node{
-//          label 'maven-builder'
-            label 'builder-06'
+          label 'maven-builder'
+          //label 'builder-06'
           customWorkspace "workspace/${env.JOB_NAME}"
         }
     }
