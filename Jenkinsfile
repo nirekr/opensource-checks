@@ -1,8 +1,8 @@
 pipeline {
     agent {
         node{
-          //label 'maven-builder'
-          label 'builder-08'
+          label 'maven-builder'
+          //label 'builder-08'
           customWorkspace "workspace/${env.JOB_NAME}"
         }
     }
@@ -20,6 +20,11 @@ pipeline {
                 checkLicense()
               
             }
+        }
+    }
+    post {
+        always {
+            cleanWorkspace()   
         }
     }
 }
