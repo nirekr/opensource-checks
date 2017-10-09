@@ -15,11 +15,12 @@ pipeline {
         timestamps()
     }
     stages {
-        stage('License check') {
+        stage('Latest Version') {
             steps {
-                checkLicense()
+                Getversion()
               
             }
+            
         }
     }
     post {
